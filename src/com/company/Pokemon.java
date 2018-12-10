@@ -1,0 +1,78 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Pokemon{
+    String name;
+    Type t1,t2;
+
+    private int curHp ;
+    public final int maxHp;
+    public final int attack;
+    public final int defence;
+    public final int spAttack;
+    public final int spDefence;
+    public final int speed;
+
+    List<Move> moves;
+
+    public boolean isDead(){
+        return curHp <=0;
+    }
+
+    public Pokemon(String _name,int _maxHP, int _att, int _def, int _spAtt, int _spdef,int _spd, Type _t1,Move..._moves){
+
+        this(_name,_maxHP,_att,_def, _spAtt, _spdef,_spd,_t1, Type.None);
+    }
+
+
+    public Pokemon(String _name,int _maxHP, int _att, int _def, int _spAtt, int _spdef,int _spd, Type _t1, Type _t2 ,Move... _moves){
+        name = _name;
+
+        curHp = maxHp = _maxHP;
+        attack = _att;
+        defence = _def;
+        spAttack = _spAtt;
+        spDefence = _spdef;
+        speed = _spd;
+
+        t1 = _t1;
+        t2 = _t2;
+
+        moves = new ArrayList<Move>();
+        for (Move m:_moves) {
+            moves.add(m);
+        }
+    }
+
+    public void printTurn(){
+        System.out.println(name + " HP: " + curHp);
+        System.out.println("Moves :");
+        int i=0;
+        for (Move m:moves) {
+            System.out.println(++i + ". " + m.getName());
+        }
+    }
+
+    public void receiveCommand(int moveNo,Pokemon target){
+        if(moveNo >= moves.size())
+            moveNo = 0;
+        moves.get(moveNo).use(this,target);
+    }
+
+    public void takeHit(Move m,int damageBonus){
+        int damage = Math.max((int)((m.power + damageBonus - defence)*getMoveModifier(m)),0);
+        curHp -= damage;
+        System.out.println(name + " took " +damage + " damage");
+    }
+
+    public double getMoveModifier(Move move){
+        return  getMoveModifier(move.type);
+    }
+    public double getMoveModifier(Type other){
+        return t1.getModifier(other) * t2.getModifier(other);
+    }
+
+
+}

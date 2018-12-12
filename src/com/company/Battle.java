@@ -1,5 +1,6 @@
 package com.company;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 class  Battle{
@@ -24,8 +25,14 @@ class  Battle{
 
         Scanner cin = new Scanner(System.in);
         while(isOver()){
-            t1.takeTurn(cin,t2.party.get(0));
-            t2.takeTurn(cin,t1.party.get(0));
+            ArrayList<Attack> attacksList  = new ArrayList<>();
+            attacksList.add(t1.takeTurn(cin,t2.party.get(0)));
+            attacksList.add(t2.takeTurn(cin,t1.party.get(0)));
+
+            Collections.sort(attacksList);
+            for (Attack a :attacksList) {
+                a.execute();
+            }
         }
         //calculate results
         if(!t1.canFight() && !t2.canFight())

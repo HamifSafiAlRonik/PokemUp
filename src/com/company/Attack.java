@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.*;
 
-public class Attack implements Comparable<Attack> {
+public class Attack implements Comparable<Attack> {//so that we can sort easily
     private Pokemon user;
     private Pokemon target;
     private Move move;
@@ -13,15 +13,16 @@ public class Attack implements Comparable<Attack> {
         this.move = m;
     }
 
-    public int compareTo(Attack other){
+    public int compareTo(Attack other){// for sorting
         int retVal;
         if(move.priority != other.move.priority)
-            return  move.priority - other.move.priority;
+            return (other.move.priority - move.priority);
         else
-            return  (this.user.speed - other.user.speed);
+            return ( other.user.speed - this.user.speed);
     }
 
     public void execute(){
-        target.takeHit(move,user.attack);
+        if(!user.isDead())
+            move.use(user,target);
     }
 }

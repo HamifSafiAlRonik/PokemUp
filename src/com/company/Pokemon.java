@@ -55,15 +55,15 @@ class Pokemon{
         }
     }
 
-    public void receiveCommand(int moveNo,Pokemon target){
-        if(moveNo > moves.size())
-            moveNo = 0;
-        moves.get(moveNo-1).use(this,target);
+    public Attack receiveCommand(int moveNo,Pokemon target){
+        if(moveNo > moves.size() || moveNo <1)
+            moveNo = 1;
+
+        return  new Attack(this,target,moves.get(moveNo-1));
     }
 
     public void takeHit(Move m,int damageBonus){
         double moveMod = getMoveModifier(m);
-
         if(moveMod > 1)
             System.out.println("It's SUPER effective!");
         else if(moveMod < 1)

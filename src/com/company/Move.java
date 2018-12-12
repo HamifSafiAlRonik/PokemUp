@@ -19,7 +19,7 @@ class  Move{
 
     public void use(Pokemon user,Pokemon target){
         System.out.println(user.name + " used " + this.name + " on " + target.name +". " );
-        target.takeHit(this,user.attack);
+        target.takeHit(this,user.attack);//#UNIMPLEMENTED certain moves should use sp attack instead of attack
     }
 
 }

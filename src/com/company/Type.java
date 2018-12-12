@@ -7,6 +7,7 @@ enum Type{
     Flying,Psychic,Dark,Fighting,Normal,Ghost,Steel,Poison,
     None;//dummy for single type mons.Always put this at the end since that's how the array is structured
 
+    //choose between this or switch case
     static double[][] weaknessTable ={//horizontal row = defending type, vertical = attack type
                 //fire,wate,elec,ice ,rock,grou,gras,bug,drag,Fly,Psyc,Dark,Figh,Norm,Ghos,Stee,Pois,none,
         /*fire  */{.5,   .5,   1,  2,  .5,   1,   2,   2,  .5,   1,  1,   1,   1,  1,  1,   1,   1,   1},
@@ -19,7 +20,7 @@ enum Type{
 
     };
 
-    //incomplete, replace with a completed static array or a spreadsheet
+    //incomplete, replace with a completed static array or a spreadsheet or just complete this
     public Double getModifier(Type other){
         double retVal = 1;
         switch(this){

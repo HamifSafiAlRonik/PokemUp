@@ -23,11 +23,12 @@ class Trainer{
 
     }
 
-    public void takeTurn(Scanner cin, Pokemon target){
+    //needs a better name
+    public Attack takeTurn(Scanner cin, Pokemon target){
         party.get(0).printTurn();
         System.out.println("enter command: ");
         int command=cin.nextInt();
 
-        party.get(0).receiveCommand(command,target);
+        return party.get(0).receiveCommand(command,target);
     }
 }

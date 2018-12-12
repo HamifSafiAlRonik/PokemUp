@@ -56,15 +56,26 @@ class Pokemon{
     }
 
     public void receiveCommand(int moveNo,Pokemon target){
-        if(moveNo >= moves.size())
+        if(moveNo > moves.size())
             moveNo = 0;
-        moves.get(moveNo).use(this,target);
+        moves.get(moveNo-1).use(this,target);
     }
 
     public void takeHit(Move m,int damageBonus){
-        int damage = Math.max((int)((m.power + damageBonus - defence)*getMoveModifier(m)),0);
+        double moveMod = getMoveModifier(m);
+
+        if(moveMod > 1)
+            System.out.println("It's SUPER effective!");
+        else if(moveMod < 1)
+            System.out.println("It's not very effective... ");
+        else
+            System.out.println( "... ");
+
+        int damage = Math.max((int)((m.power + damageBonus - defence)*moveMod),0);
         curHp -= damage;
         System.out.println(name + " took " +damage + " damage");
+        if(curHp <= 0)
+            System.out.println(name + " has fainted...");
     }
 
     public double getMoveModifier(Move move){

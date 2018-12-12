@@ -1,10 +1,25 @@
 package com.company;
 
+import javax.swing.text.StyledEditorKit;
+
 enum Type{
     Fire,Water,Electric,Ice,Rock,Ground,Grass,Bug,Dragon,
     Flying,Psychic,Dark,Fighting,Normal,Ghost,Steel,Poison,
-    None;//dummy for single type mons
+    None;//dummy for single type mons.Always put this at the end since that's how the array is structured
 
+    static double[][] weaknessTable ={//horizontal row = defending type, vertical = attack type
+                //fire,wate,elec,ice ,rock,grou,gras,bug,drag,Fly,Psyc,Dark,Figh,Norm,Ghos,Stee,Pois,none,
+        /*fire  */{.5,   .5,   1,  2,  .5,   1,   2,   2,  .5,   1,  1,   1,   1,  1,  1,   1,   1,   1},
+        /*water */{ 2,   .5,   1,  1,   2,   2,  .5,   1,  .5,   1,  1,   1,   1,  1,  1,   1,   1,   1},
+        /*elec  */{ 1,    2,  .5,  1,   1,   0,  .5,   1,  .5,   2,  1,   1,   1,  1,  1,   1,   1,   1},
+        /*Ice   */{.5,   .5,   1, .5,   1,   2,   2,   1,   2,   2,  1,   1,   1,  1,  1,  .5,   1,   1},
+        /*Rock  */{ 2,    1,   1,  2,   1,  .5,   1,   2,   1,   2,  1,   1,   2,  1,  1,  .5,   1,   1},
+        /*ground*/{ 2,    1,   2,  1,   2,   1,  .5,  .5,   1,   0,  1,   1,   1,  1,  1,   2,   2,   1},
+        /*Grass */{.5,    1,   1, .5,   2,   2,  .5,  .5,  .5,  .5,  1,   1,   1,  1,  1,  .5,  .5,   1},
+
+    };
+
+    //incomplete, replace with a completed static array or a spreadsheet
     public Double getModifier(Type other){
         double retVal = 1;
         switch(this){
@@ -53,5 +68,7 @@ enum Type{
         }
         return retVal;
     }
+
+
 
 }

@@ -8,7 +8,11 @@ class Trainer{
     String name;
 
     public boolean canFight() {
-        return party.size() > 0;
+        for (Pokemon p:party) {
+            if(!p.isDead())
+                return true;
+        }
+        return false;
     }
     public Trainer(String _name, Pokemon... pokemons){
         name = _name;

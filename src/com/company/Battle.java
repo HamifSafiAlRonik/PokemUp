@@ -26,8 +26,8 @@ class  Battle{
         Scanner cin = new Scanner(System.in);
         while(isOver()){
             ArrayList<Attack> attacksList  = new ArrayList<>();
-            attacksList.add(t1.takeTurn(cin,t2.party.get(0)));
-            attacksList.add(t2.takeTurn(cin,t1.party.get(0)));
+            attacksList.add(t1.takeTurn(cin,t2.getCurPokemon()));
+            attacksList.add(t2.takeTurn(cin,t1.getCurPokemon()));
 
             Collections.sort(attacksList);
             for (Attack a :attacksList) {

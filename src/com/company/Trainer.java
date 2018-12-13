@@ -18,10 +18,12 @@ class Trainer{
     }
 
     public Pokemon getCurPokemon(){
-        Pokemon curPokemon = null;
-        if(party.size() > 0 && curPokeIndex < party.size())
-            curPokemon = party.get(curPokeIndex);
         return  curPokemon;
+    }
+
+    private void setCurPokemon(int index){
+        curPokeIndex = index;
+        curPokemon = party.get(curPokeIndex);
     }
 
     public Pokemon swapPokemon(){//simply swaps with next pokemon
@@ -29,14 +31,12 @@ class Trainer{
     }
     public Pokemon swapPokemon(int newIndex){
            newIndex = newIndex % party.size();
-           Pokemon curPoke = getCurPokemon();
            if(!party.get(newIndex).isDead()){
-               System.out.println(this.name+" recalled " + getCurPokemon().name +"!" );
-               curPokeIndex = newIndex;
-               curPoke = getCurPokemon();
-               System.out.println(this.name+" sent out " + getCurPokemon().name +"!" );
+               System.out.println(this.name+" recalled " + curPokemon.name +"!" );
+               setCurPokemon(newIndex);
+               System.out.println(this.name+" sent out " + curPokemon.name +"!" );
            }
-           return curPoke;
+           return curPokemon;
     }
 
     public Trainer(String _name, Pokemon... pokemons){//... used for quickness,use list or something better
@@ -47,20 +47,19 @@ class Trainer{
             party.add(p);
         }
         if(party.size() > 0)
-            curPokemon = getCurPokemon();
+            curPokemon = party.get(curPokeIndex);
         System.out.println("Pokemons "+ pokemons.length + " party " + party.size());
     }
 
     //needs a better name
-    public Attack takeTurn(Scanner cin, Pokemon target){
-        Pokemon curPoke = getCurPokemon();
-        if(curPoke.isDead())
-            curPoke = swapPokemon();
+    public Attack takeTurn(Scanner cin, Pokemon target){//returns the attack chosen this turn
+        if(curPokemon.isDead())
+            curPokemon = swapPokemon();
 
-        curPoke.printTurn();
+        curPokemon.printTurn();
         System.out.println("enter command: ");
         int command=cin.nextInt();
 
-        return curPoke.receiveCommand(command,target);
+        return curPokemon.receiveCommand(command,target);
     }
 }

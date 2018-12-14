@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Trainer{
-    private  ArrayList<Pokemon> party = new ArrayList<Pokemon>();
+    private  ArrayList<Pokemon> party = new ArrayList<>();
     private int curPokeIndex;//index in party of the current pokemon
     private Pokemon curPokemon;
     String name;

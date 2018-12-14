@@ -17,7 +17,6 @@ enum Type{
         /*Rock  */{ 2,    1,   1,  2,   1,  .5,   1,   2,   1,   2,  1,   1,   2,  1,  1,  .5,   1,   1},
         /*ground*/{ 2,    1,   2,  1,   2,   1,  .5,  .5,   1,   0,  1,   1,   1,  1,  1,   2,   2,   1},
         /*Grass */{.5,    1,   1, .5,   2,   2,  .5,  .5,  .5,  .5,  1,   1,   1,  1,  1,  .5,  .5,   1},
-
     };
 
     //incomplete, replace with a completed static array or a spreadsheet or just complete this

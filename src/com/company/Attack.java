@@ -3,9 +3,9 @@ package com.company;
 import java.util.*;
 
 public class Attack implements Comparable<Attack> {//so that we can sort easily
-    private Pokemon user;
-    private Pokemon target;
-    private Move move;
+    private final Pokemon user;
+    private final Pokemon target;
+    private final Move move;
 
     public Attack(Pokemon user, Pokemon target, Move m) {
         this.user = user;

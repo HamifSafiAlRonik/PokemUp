@@ -48,7 +48,6 @@ class Trainer{
         }
         if(party.size() > 0)
             curPokemon = party.get(curPokeIndex);
-        System.out.println("Pokemons "+ pokemons.length + " party " + party.size());
     }
 
     //needs a better name
